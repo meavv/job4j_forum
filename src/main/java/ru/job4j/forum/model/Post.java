@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Objects;
 
 public class Post {
+
     private int id;
     private String name;
     private String description;
@@ -57,29 +58,27 @@ public class Post {
     }
 
     @Override
+    public String toString() {
+        return "Post{" + "id=" + id + ", name='"
+                + name + '\'' + ", description='"
+                + description + '\'' + ", created="
+                + created + ", creater=" + creater + '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Post post = (Post) o;
-        return id == post.id &&
-                Objects.equals(name, post.name) &&
-                Objects.equals(description, post.description) &&
-                Objects.equals(created, post.created);
+        return id == post.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, created);
-    }
-
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", created=" + created +
-                ", creater=" + creater +
-                '}';
+        return Objects.hash(id);
     }
 }

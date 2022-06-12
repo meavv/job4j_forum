@@ -9,39 +9,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
-
 @Controller
+
 public class PostControl {
 
     private final PostService posts;
-
 
     public PostControl(PostService posts) {
         this.posts = posts;
     }
 
-    @GetMapping({ "/post"})
+    @GetMapping({"/post"})
     public String index(Model model, @RequestParam(name = "id") Integer id) {
         model.addAttribute("post", posts.getId(id));
         return "post";
     }
 
-    @GetMapping({ "/edit"})
+    @GetMapping({"/edit"})
     public String edit(Model model, @RequestParam(name = "id") Integer id) {
         model.addAttribute("post", posts.getId(id));
         model.addAttribute("id", id);
         return "edit";
     }
 
-    @GetMapping({ "/new"})
+    @GetMapping({"/new"})
     public String newPost(Model model) {
         model.addAttribute("id", posts.getCount());
         return "edit";
     }
 
-    @PostMapping({ "/new"})
+    @PostMapping({"/new"})
     public String newPost(@ModelAttribute Post post) {
-        posts.add(post);
+        if (posts.getPosts().containsKey(post.getId())) {
+            posts.replace(post);
+        } else {
+            posts.add(post);
+        }
         return "redirect:/";
     }
 

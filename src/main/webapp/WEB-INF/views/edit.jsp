@@ -7,7 +7,7 @@
 <form name='new' action="<c:url value='/new'/>" method='POST'>
     <table>
         <tr>
-            <td><input type='hidden' name='id' value="${id}"></td>
+            <td><input type='text' name='id' value="${id}"></td>
         </tr>
         <tr>
             <td>name:</td>
