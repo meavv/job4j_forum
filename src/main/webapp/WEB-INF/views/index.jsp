@@ -37,10 +37,10 @@
             <c:forEach items="${posts}" var="post">
                 <tr>
                     <td>
-                        <a href='<c:url value="/post?id=${post.id}"/>'><c:out value="${post.name}"/></a>
+                        <a href='<c:url value="/post?id=${post.key}"/>'><c:out value="${post.value.name}"/></a>
                     </td>
                     <td>
-                        <a href='<c:url value="/edit?id=${post.id}"/>'>Изменить</a>
+                        <a href='<c:url value="/edit?id=${post.key}"/>'>Изменить</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -1,15 +1,20 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Objects;
 
+@Entity
+@Table(name = "posts")
 public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private String description;
     private Calendar created;
-    private User creater;
 
     public static Post of(String name) {
         Post post = new Post();
@@ -58,14 +63,6 @@ public class Post {
     }
 
     @Override
-    public String toString() {
-        return "Post{" + "id=" + id + ", name='"
-                + name + '\'' + ", description='"
-                + description + '\'' + ", created="
-                + created + ", creater=" + creater + '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -80,5 +77,12 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" + "id=" + id + ", name='" + name
+                + '\'' + ", description='" + description
+                + '\'' + ", created=" + created + '}';
     }
 }
