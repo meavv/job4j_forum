@@ -21,20 +21,17 @@ public class PostService {
     }
 
     public void add(Post post) {
-        post.setId(count.get());
-        count.addAndGet(1);
-        post.setCreated(Calendar.getInstance());
-        posts.save(post);
+        if (getPosts().containsKey(post.getId())) {
+            replace(post);
+        } else {
+            post.setId(count.get());
+            count.addAndGet(1);
+            post.setCreated(Calendar.getInstance());
+            posts.save(post);
+        }
     }
 
     public void replace(Post post) {
-        post.setCreated(Calendar.getInstance());
-        posts.save(post);
-    }
-
-    public void edit(Post post) {
-        post.setId(count.get());
-        count.addAndGet(1);
         post.setCreated(Calendar.getInstance());
         posts.save(post);
     }
