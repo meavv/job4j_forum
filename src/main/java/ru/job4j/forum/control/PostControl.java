@@ -40,11 +40,7 @@ public class PostControl {
 
     @PostMapping({"/new"})
     public String newPost(@ModelAttribute Post post) {
-        if (posts.getPosts().containsKey(post.getId())) {
-            posts.replace(post);
-        } else {
-            posts.add(post);
-        }
+        posts.add(post);
         return "redirect:/";
     }
 
